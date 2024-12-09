@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.soap.com/"
+           targetNamespace="http://www.soap.com/" elementFormDefault="qualified">
+
+    <!-- Registrar Préstamo -->
+    <xs:element name="registrarPrestamoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idUsuario" type="xs:int"/>
+                <xs:element name="idLibro" type="xs:int"/>
+                <xs:element name="fechaPrestamo" type="xs:dateTime"/>
+                <xs:element name="fechaDevolucion" type="xs:dateTime"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="registrarPrestamoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idPrestamo" type="xs:int"/>
+                <xs:element name="fechaPrestamo" type="xs:dateTime"/>
+                <xs:element name="estado" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Registrar Devolución -->
+    <xs:element name="registrarDevolucionRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idPrestamo" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="registrarDevolucionResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idPrestamo" type="xs:int"/>
+                <xs:element name="estado" type="xs:string"/>
+                <xs:element name="multa" type="xs:decimal" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Préstamo Complex Type -->
+    <xs:complexType name="prestamos">
+        <xs:sequence>
+            <xs:element name="idPrestamo" type="xs:int"/>
+            <xs:element name="idUsuario" type="xs:int"/>
+            <xs:element name="idLibro" type="xs:int"/>
+            <xs:element name="fechaPrestamo" type="xs:dateTime"/>
+            <xs:element name="fechaDevolucion" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="estadoPrestamo" type="xs:string"/>
+            <xs:element name="multa" type="xs:decimal" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
